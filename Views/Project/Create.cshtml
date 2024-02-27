@@ -1,0 +1,68 @@
+﻿@model Project;
+@*<script ssrc="https://code.jquery.com/jquery-3.6.4.min.js%22"></script>*@
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.12/jquery.validate.unobtrusive.min.js"></script>
+
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1 class="container d-flex justify-content-center">Create</h1>
+@using (Html.BeginForm("Post", "Project", FormMethod.Post))
+{
+    <div class="container" style="width:40vw;">
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectId)
+            @Html.TextBoxFor(model => model.ProjectId, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProjectId, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectName)
+            @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProjectName, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate)
+            @Html.EditorFor(model => model.StartDate, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate)
+            @Html.EditorFor(model => model.EndDate, new { @class = "form-control" })
+            <span asp-validation-for="EndDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.ProjectManager)
+            @Html.TextBoxFor(model => model.ProjectManager, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.ProjectManager, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Budget)
+            @Html.TextBoxFor(model => model.Budget, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Budget, "", new { @class = "text-danger" })
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Status)
+            @Html.DropDownListFor(model => model.Status, Enum.GetValues(typeof(StatusOptions)).Cast<StatusOptions>().Select(
+                x => new SelectListItem()
+                {
+                    Text = x.ToString(),
+                    Value = ((int)x).ToString()
+                }), "Select Status")
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Description)
+            @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+        </div>
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+
+}
+
+
+

@@ -1,0 +1,61 @@
+﻿@model Project
+
+<h1>Edit Project</h1>
+
+    <h1 class="container d-flex justify-content-center">Create</h1>
+    @using (Html.BeginForm("Post", "Project", FormMethod.Post))
+    {
+<div class="container" style="width:40vw;">
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectId)
+        @Html.TextBoxFor(model => model.ProjectId, new { @class = "form-control" })
+        <span asp-validation-for="ProjectId" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectName)
+        @Html.TextBoxFor(model => model.ProjectName, new { @class = "form-control" })
+        <span asp-validation-for="ProjectName" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.StartDate)
+        @Html.EditorFor(model => model.StartDate, new { @class = "form-control" })
+        <span asp-validation-for="StartDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.EndDate)
+        @Html.EditorFor(model => model.EndDate, new { @class = "form-control" })
+        <span asp-validation-for="EndDate" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ProjectManager)
+        @Html.TextBoxFor(model => model.ProjectManager, new { @class = "form-control" })
+        <span asp-validation-for="ProjectManager" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Budget)
+        @Html.TextBoxFor(model => model.Budget, new { @class = "form-control" })
+        <span asp-validation-for="Budget" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Status)
+        @Html.DropDownListFor(model => model.Status, Enum.GetValues(typeof(StatusOptions)).Cast<StatusOptions>().Select(
+            x => new SelectListItem()
+            {
+                Text = x.ToString(),
+                Value = ((int)x).ToString()
+            }), "Select Status")
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.Description)
+        @Html.TextBoxFor(model => model.Description, new { @class = "form-control" })
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+    <div class="form-group">
+        <button type="submit" class="btn btn-success">Submit</button>
+    </div>
+</div>
+ 
+       
+
+}
+}
